@@ -6,132 +6,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="mystyle.css">
     <title>Document</title>
+
+ <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 </head>
-<body>
-  <div class="header" style="text-align:center">
-      <h1> Weather App</h1>
-      <div class="date-container">
-        <div class="time" id="time">
-            12:30 <span id="am-pm">PM</span>
-        </div>
-        
-  </div>
-<hr>
-    <h3></h3>
-<form  id="search-form">
-       <input type="text"
-       placeholder="search for a city"
-       autocomplete="off"
-       autofocus="on"
-              id="search-text-input"
-      />
-       <input class="search-button" type="submit" value="search"/>
-      </form>
-    
-</div>
-<br>
- <div class="current-weather">
-                <p>city</p>
-                <p>temp</p>
-                <p>humidity</p>
+
+<div class="container">
+      <div class="weather-app-wrapper">
+        <div class="weather-app">
+          <form id="search-form" class="mb-3">
+            <div class="row">
+              <div class="col-9">
+                <input
+                  type="search"
+                  placeholder="Search for a city.."
+                  class="form-control"
+                  id="city-input"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="col-3">
+                <input
+                  type="submit"
+                  value="Search"
+                  class="btn btn-primary w-100"
+                />
+              </div>
             </div>
-            <hr>
-<div class="row">
-    <div class="column" style="background-color:#ebf5fb;">
-        <h2>Monday</h2>
-        <p>72&#8451;</p>
-        <p>humidity</p>
-        <p>wind speed</p>
-    <img src="https://media2.giphy.com/media/Ke7i5t6QDmDSO82Uga/giphy.gif" width="115px" height="55px">
+          </form>
+          <div class="overview">
+            <h1 id="city"></h1>
+            <ul>
+              <li>Current Date: <span id="demo"></span></li>
+            <ul>
+              <li>Last update: <span id="date"></span></li>
+              <li id="description"></li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="clearfix weather-temperature">
+                <img src="" alt="Clear" id="icon" class="float-left" />
+                <div class="float-left">
+                  <strong id="temperature"></strong
+                  ><span class="units"> °C</span>
+                </div>
+              </div>
+            </div>
+            <div class="col6">
+              <ul>
+                <li>Humidity: <span id="humidity"></span>%</li>
+                <li>Wind: <span id="wind"></span> m/h</li>
+              </ul>
+            </div>
+          </div>
+          <div class="weather-forecast" id="forecast"></div>
+        </div>
+   
+        <small>
+          <a
+            href="https://github.com/wecodeschool/vanilla-weather-app"
+            target="_blank"
+            >Open-source code</a
+          >
+          by Chancie
+        </small>
+      </div>
     </div>
-    <div class="column" style="background-color:rgb(177, 222, 237, 0.4);">
-        <h2>Tuesday</h2>
-        <p>72&#8451;</p>
-        <p>humidity</p>
-        <p>wind speed</p>
-        
-        <img src="https://media4.giphy.com/media/xUOwGoNa2uX6M170d2/giphy.gif" width="115px" height="55px">
-    </div>
-    <div class="column" style="background-color:rgb(192, 241, 239, 0.4);">
-        <h2>Wednesday</h2>
-        <p>72&#8451;</p>
-        <p>humidity</p>
-        <p>wind speed</p>
-<img src="https://cdn.dribbble.com/users/580699/screenshots/2934892/summer.gif" width="115px" height="55px">
-    </div>
-    <div class="column" style="background-color:rgb(174, 237, 221, 0.4);">
-        <h2>Thursday</h2>
-        <p>72&#8451;</p>
-        <p>humidity</p>
-        <p>wind speed</p>
-        <img src="https://thumbs.gfycat.com/IllustriousRecentKoala-size_restricted.gif" width="115px" height="55px">
-    </div>
-    <div class="column" style="background-color:rgb(100, 215, 225, 0.4);">
-        <h2>Friday</h2>
-        <p>72&#8451;</p>
-        <p>humidity</p>
-        <p>wind speed</p>
-        <img src="https://cdn.dribbble.com/users/580699/screenshots/2934892/summer.gif" width="115px" height="55px">
-    </div>
-</div>
-<hr>
-
-  <div class="footer">
-      <p> 
-      <small> project made by chancie 
-</small></p></div> 
-<script >let weather = {
-    paris: {
-      temp: 19.7,
-      humidity: 80
-    },
-    tokyo: {
-      temp: 17.3,
-      humidity: 50
-    },
-    lisbon: {
-      temp: 30.2,
-      humidity: 20
-    },
-    "san francisco": {
-      temp: 20.9,
-      humidity: 100
-    },
-    moscow: {
-      temp: -5,
-      humidity: 20
-    }
-  };
-  
-  let city = prompt("Enter a city?");
-  city = city.toLowerCase();
-  if (weather[city] !== undefined) {
-    let temperature = weather[city].temp;
-    let humidity = weather[city].humidity;
-    let celsiusTemperature = Math.round(temperature);
-    let fahrenheitTemperature = Math.round((temperature * 9) / 5 + 32);
-  
-    alert(
-      `It is currently ${celsiusTemperature}°C (${fahrenheitTemperature}°F) in ${city} with a humidity of ${humidity}%`
-    );
-  } else {
-    alert(
-      `Sorry we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${city}`
-    );
-  }
-  
-const d = new Date();
-document.getElementById("time").innerHTML = d;
-
-
-
-function search(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector("#search-text-input");
-  let h3 = document.querySelector("h3");
-  h3.innerHTML = `searching for ${searchInput.value}...`;
-}
-let form = document.querySelector("#search-form");
-form.addEventListener("submit", search);</script>
 </body>
 </html>
